@@ -19,8 +19,5 @@ namespace INF272_Practical2.Models
 
         [Display(Name = "Email Address")]
         public string Email { get; set; }
-
-        [Display(Name = "Profile Link")]
-        public string MyLink { get; set; }
     }
 }

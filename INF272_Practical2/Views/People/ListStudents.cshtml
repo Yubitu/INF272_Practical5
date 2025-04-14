@@ -6,6 +6,14 @@
 }
 
 <h2>List of People</h2>
+<a href="/People/Create">Create new</a>
+
+<div>
+    <label>Search String</label>
+    <input type="text" id="search" />
+    <button id="submit">Submit</button>
+</div>
+
 <table class="table">
     <tr>
         <th>
@@ -21,9 +29,8 @@
             @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MyLink)
+            Delete
         </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -42,10 +49,111 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.ActionLink("LINK", null, null, new { href = Url.Content(item.MyLink) })
-            </td>
-            <td>
+                <button class="btn btn-success class" onclick="Delete(this)">Delete</button>
             </td>
         </tr>
     }
 </table>
+
+<button onclick="storeTable()" id="save-storage">Save to local storage</button>
+<button onclick="retrieveTable()" id="retrieve-storage">Retrieve from local storage</button>
+<button id="clear-storage">Clear local storage</button>
+
+@section Scripts {
+    <script>
+        document.querySelector("#submit").addEventListener("click", () => {
+            const searchValue = document.querySelector("#search").value.toLowerCase();
+            const rows = document.querySelector("table").rows;
+
+            // Start at index 1 to skip the table header row
+            for (let i = 1; i < rows.length; i++) {
+
+                if (rows[i].cells[1].textContent.trim().toLowerCase().includes(searchValue)) {
+                    rows[i].style.color = "red";
+
+                    // Reset to original color after 3 seconds
+                    setTimeout(() => {
+                        rows[i].style.color = "";
+                    }, 3000);
+                } 
+            }
+        });
+        //CLearing from local storage
+        document.querySelector("#clear-storage").addEventListener("click", () => {
+            localStorage.clear();
+        })
+
+        //Storing to local storage
+        function storeTable() {
+            const rows = document.querySelector(".table").rows;
+
+            let result = "";
+
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].cells;
+
+                //lopping through the cells
+                for (let j = 0; j < cells.length; j++) {
+                    result += cells[j].innerText.trim() + ","
+                }
+
+                result += "-";
+            }
+            localStorage.setItem("result", result);
+        }
+        //retrieving the table from local storage
+        function retrieveTable() {
+            //selecting what's saved in local storage
+            const result = localStorage.getItem("result");
+
+            //if result is empty, error message
+            if (!result) {
+                alert("No table found!");
+
+            } else {
+                const rows = result.split("-"); //Else we can proceed with adding in the existing headings first
+                let tableHTML = `
+                                <thead>
+                                    <tr>
+                                        <th>Student Number</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email Address</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                            `;
+                //we will loop through the table using a nested for loop
+                for (let i = 1; i < rows.length - 1; i++) {
+                    const cols = rows[i].split(",");
+                    tableHTML += `<tr>`;
+
+                    //Key to note that we want simply create a button for every cell found in the delete column
+                    for (let j = 0; j < cols.length; j++) {
+                        if (j === 4) {
+                            tableHTML += `<td>
+                        <button class="btn btn-success" onclick="Delete(this)">Delete</button>
+                    </td>`;
+                        } else {
+                            tableHTML += `<td>${cols[j]}</td>`; //else we insert the table data from the local storage
+                        }
+                    }
+
+                    tableHTML += `</tr>`;
+                }
+                // add your tablehtml values
+                tableHTML += `</tbody>`;
+                //accessing the dom to finalize the code
+                document.querySelector(".table").innerHTML = tableHTML;
+            }
+        }
+
+        // Function to delete the row when the delete button is clicked
+        function Delete(button) {
+            // Find the closest tr that contains the clicked button
+            var row = button.parentElement.parentElement;
+            row.remove();
+        }
+    </script>
+}

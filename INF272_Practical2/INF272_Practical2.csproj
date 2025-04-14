@@ -197,6 +197,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\People\ListStudents.cshtml" />
     <Content Include="HTML\Ashton.html" />
+    <Content Include="Views\People\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
