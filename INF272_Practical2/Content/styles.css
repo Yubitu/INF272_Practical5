@@ -1,0 +1,151 @@
+﻿/* General body styling */
+body {
+    width: 100%;
+    max-width: 100vw; /* Ensures no horizontal scrolling */
+    overflow-x: hidden; /* Prevents cut-off */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(211, 211, 211, 0.2); /* Misty light grey overlay */
+}
+
+/* Header Section (Above Navbar) */
+.header-section {
+    background-color: #3a3a3a; /* Modern grey */
+    padding: 15px;
+    text-align: center;
+}
+
+.header-section h1 {
+    color: #f5f5f5; /* Off-white */
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+    .navbar {
+        width: 100vw;
+        padding: 0;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        background-color: #222; /* Dark background */
+        border-top: 1px solid #444; /* Slightly thicker */
+        border-bottom: 1px solid #444;
+        width: 100%;
+    }
+
+    nav ul li {
+        padding: 0px;
+        flex-grow: 1; /* Ensures each link takes equal space */
+        text-align: center;
+    }
+
+nav ul li a {
+    color: rgba(255, 255, 255, 0.8); /* Slightly faded white */
+    text-decoration: none;
+    display: block;
+    padding-right: 30px 0; /* Adjust padding to make links touch */
+    padding-left: 30px 0;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+    /* Hover and active state */
+    nav ul li a:hover,
+    nav ul li a.active {
+        background-color: white;
+        color: black;
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
+    }
+
+/* Ensure spacing between navbar and first section */
+section {
+    padding: 20px;
+    border: 3px solid rgba(0, 0, 0, 0.6); /* Thicker faded black border */
+    margin: 20px auto; /* Space between sections */
+    border-radius: 8px;
+    background: rgba(245, 245, 245, 0.1); /* Light misty overlay */
+}
+
+/* Headings */
+h2 {
+    color: white;
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+/* Biography section with image on the left */
+.bio-container {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Ensures space between image and text */
+}
+
+    .bio-container img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+/* Hobbies section with image on the right */
+.hobbies-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures text starts from the left */
+}
+
+    .hobbies-container img {
+        width: 250px; /* Slightly increased size for balance */
+        height: 250px;
+        object-fit: cover;
+        margin-left: 20px; /* Ensures spacing between image and text */
+    }
+
+/* Headings Styling */
+h2 {
+    font-family: Arial, sans-serif;
+    color: rgba(0, 0, 0, 1); /* Slightly faded black */
+    text-align: left;
+    margin: 0;
+    padding: 10px 0;
+}
+
+table {
+    width: 50%; /* Increased width */
+    max-width: 800px; /* Prevents it from being too large on wider screens */
+    text-align: left;
+    margin-left: 25px;
+    padding-left: 25px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px; /* Increased cell padding */
+    font-size: 18px; /* Makes text slightly bigger */
+}
+/* Table Heading Styling */
+thead th {
+    background-color: rgba(255, 255, 255, 0.2); /* Light background */
+    color: black; /* Slightly faded black */
+    font-size: 21px; /* Slightly larger font */
+    text-align: left; /* Align to the left */
+    padding: 12px;
+}
+/* Flip effect on hover */
+.bio-container img:hover,
+.hobbies-container img:hover {
+    transform: rotateY(180deg);
+}

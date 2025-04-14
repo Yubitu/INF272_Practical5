@@ -1,0 +1,25 @@
+﻿body {
+    background-color: rgba(200, 200, 200, 0.2);
+}
+
+.container.body-content {
+    background: rgba(200, 200, 200, 0.2); /* Dark grey overlay */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.table a {
+    display: inline-block; /* Makes the link look like a button */
+    background-color: rgba(0, 0, 0, 0.8); /* Faded black */
+    color: white !important; /* White text */
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease-in-out;
+}
+
+    .table a:hover {
+        background-color: white;
+        color: black !important;
+        text-decoration: none;
+    }
